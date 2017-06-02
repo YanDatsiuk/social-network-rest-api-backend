@@ -15,7 +15,7 @@ class UserTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'wall', 'authGroupUsers', 'pivotPostLikes', 'pivotUserGroups', 'authGroups', 'posts', 'groups', 
+        'wall', 'authGroupUsers', 'comments', 'pivotPostLikes', 'pivotUserGroups', 'authGroups', 'posts', 'groups', 
     ];
 
     /**

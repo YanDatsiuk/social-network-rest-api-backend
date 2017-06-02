@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int|null $author_id
  * @property string|null $text
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\Comment[] $comments
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\Image[] $images
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\PivotCommentPost[] $pivotCommentPosts
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\PivotPostImage[] $pivotPostImages
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\PivotPostLike[] $pivotPostLikes
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\PivotPostWall[] $pivotPostWalls
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\User[] $users
@@ -51,6 +55,26 @@ class Post extends Model
     
 
 	/**
+     * pivotCommentPosts.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pivotCommentPosts()
+    {
+        return $this->hasMany('App\REST\PivotCommentPost', 'post_id');
+    }
+
+	/**
+     * pivotPostImages.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pivotPostImages()
+    {
+        return $this->hasMany('App\REST\PivotPostImage', 'post_id');
+    }
+
+	/**
      * pivotPostLikes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -71,6 +95,34 @@ class Post extends Model
     }
 
     
+
+	/**
+     * Comments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function comments()
+    {
+        return $this->belongsToMany(
+            'App\REST\Comment',
+            'pivot_comment_post',
+            'post_id',
+            'comment_id');
+    }
+
+	/**
+     * Images.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function images()
+    {
+        return $this->belongsToMany(
+            'App\REST\Image',
+            'pivot_post_image',
+            'post_id',
+            'image_id');
+    }
 
 	/**
      * Users.

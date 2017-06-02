@@ -15,7 +15,7 @@ class ImageTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        
+        'pivotPostImages', 'posts', 
     ];
 
     /**

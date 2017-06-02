@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use TMPHP\RestApiGenerators\AbstractEntities\TransformerAbstract;
 
 
-class PostTransformer extends TransformerAbstract
+class PivotPostImageTransformer extends TransformerAbstract
 {
 
     /**
@@ -15,7 +15,7 @@ class PostTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'pivotCommentPosts', 'pivotPostImages', 'pivotPostLikes', 'pivotPostWalls', 'comments', 'images', 'users', 'walls', 
+        'post', 'image', 
     ];
 
     /**

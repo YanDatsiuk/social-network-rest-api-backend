@@ -1007,6 +1007,254 @@
                 }
             }
         },
+        "/comments": {
+            "get": {
+                "tags": [
+                    "comments"
+                ],
+                "description": "Get list of comments",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/show/{id}": {
+            "get": {
+                "tags": [
+                    "comments"
+                ],
+                "description": "Get specific comment by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "comment with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/create": {
+            "post": {
+                "tags": [
+                    "comments"
+                ],
+                "description": "Create comment",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/comment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/update/{id}": {
+            "patch": {
+                "tags": [
+                    "comments"
+                ],
+                "description": "Update specific comment by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/comment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/comments/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "comments"
+                ],
+                "description": "Delete specific comment by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
         "/groups": {
             "get": {
                 "tags": [
@@ -1255,6 +1503,750 @@
                 }
             }
         },
+        "/pivots-comments-posts": {
+            "get": {
+                "tags": [
+                    "pivots-comments-posts"
+                ],
+                "description": "Get list of pivots-comments-posts",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-comments-posts/show/{id}": {
+            "get": {
+                "tags": [
+                    "pivots-comments-posts"
+                ],
+                "description": "Get specific pivot-comment-post by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "pivot-comment-post with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-comments-posts/create": {
+            "post": {
+                "tags": [
+                    "pivots-comments-posts"
+                ],
+                "description": "Create pivot-comment-post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-comment-post"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-comments-posts/update/{id}": {
+            "patch": {
+                "tags": [
+                    "pivots-comments-posts"
+                ],
+                "description": "Update specific pivot-comment-post by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-comment-post"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-comments-posts/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "pivots-comments-posts"
+                ],
+                "description": "Delete specific pivot-comment-post by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-images": {
+            "get": {
+                "tags": [
+                    "pivots-posts-images"
+                ],
+                "description": "Get list of pivots-posts-images",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-images/show/{id}": {
+            "get": {
+                "tags": [
+                    "pivots-posts-images"
+                ],
+                "description": "Get specific pivot-post-image by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "pivot-post-image with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-images/create": {
+            "post": {
+                "tags": [
+                    "pivots-posts-images"
+                ],
+                "description": "Create pivot-post-image",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-post-image"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-images/update/{id}": {
+            "patch": {
+                "tags": [
+                    "pivots-posts-images"
+                ],
+                "description": "Update specific pivot-post-image by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-post-image"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-images/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "pivots-posts-images"
+                ],
+                "description": "Delete specific pivot-post-image by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-likes": {
+            "get": {
+                "tags": [
+                    "pivots-posts-likes"
+                ],
+                "description": "Get list of pivots-posts-likes",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-likes/show/{id}": {
+            "get": {
+                "tags": [
+                    "pivots-posts-likes"
+                ],
+                "description": "Get specific pivot-post-like by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "pivot-post-like with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-likes/create": {
+            "post": {
+                "tags": [
+                    "pivots-posts-likes"
+                ],
+                "description": "Create pivot-post-like",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-post-like"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-likes/update/{id}": {
+            "patch": {
+                "tags": [
+                    "pivots-posts-likes"
+                ],
+                "description": "Update specific pivot-post-like by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-post-like"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-likes/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "pivots-posts-likes"
+                ],
+                "description": "Delete specific pivot-post-like by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
         "/pivots-posts-walls": {
             "get": {
                 "tags": [
@@ -1465,6 +2457,254 @@
                     "pivots-posts-walls"
                 ],
                 "description": "Delete specific pivot-post-wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-users-groups": {
+            "get": {
+                "tags": [
+                    "pivots-users-groups"
+                ],
+                "description": "Get list of pivots-users-groups",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-users-groups/show/{id}": {
+            "get": {
+                "tags": [
+                    "pivots-users-groups"
+                ],
+                "description": "Get specific pivot-user-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "pivot-user-group with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-users-groups/create": {
+            "post": {
+                "tags": [
+                    "pivots-users-groups"
+                ],
+                "description": "Create pivot-user-group",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-user-group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-users-groups/update/{id}": {
+            "patch": {
+                "tags": [
+                    "pivots-users-groups"
+                ],
+                "description": "Update specific pivot-user-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-user-group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-users-groups/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "pivots-users-groups"
+                ],
+                "description": "Delete specific pivot-user-group by Id",
                 "produces": [
                     "application/json"
                 ],
@@ -2727,6 +3967,22 @@
                 }
             }
         },
+        "comment": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "author_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "text": {
+                    "type": "string",
+                    "format": "default"
+                }
+            }
+        },
         "group": {
             "properties": {
                 "id": {
@@ -2781,6 +4037,54 @@
                 }
             }
         },
+        "pivot-comment-post": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "comment_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "post_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "pivot-post-image": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "image_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "post_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "pivot-post-like": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "post_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
         "pivot-post-wall": {
             "properties": {
                 "id": {
@@ -2792,6 +4096,22 @@
                     "format": "int32"
                 },
                 "wall_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "pivot-user-group": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "group_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "member_id": {
                     "type": "integer",
                     "format": "int32"
                 }
@@ -2864,6 +4184,10 @@
         "user": {
             "properties": {
                 "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "wall_id": {
                     "type": "integer",
                     "format": "int32"
                 },

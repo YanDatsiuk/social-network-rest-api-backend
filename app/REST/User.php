@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\AuthGroupUser[] $authGroupUsers
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\AuthGroup[] $authGroups
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\Comment[] $comments
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\Group[] $groups
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\PivotPostLike[] $pivotPostLikes
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\REST\PivotUserGroup[] $pivotUserGroups
@@ -86,6 +87,16 @@ class User extends Model
     public function authGroupUsers()
     {
         return $this->hasMany('App\REST\AuthGroupUser', 'user_id');
+    }
+
+	/**
+     * comments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\REST\Comment', 'author_id');
     }
 
 	/**

@@ -1094,6 +1094,275 @@ $api->group(
             }
         );
 
+        //comments CRUD
+        $api->group(
+            ['prefix' => '/comments'],
+            function ($api) {
+
+                /**
+                 * @SWG\Get(
+                 *     path="/comments",
+                 *     tags={"comments"},
+                 *     description="Get list of comments",
+                 *     produces= {"application/json"},
+                 *
+                 *      @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *      @SWG\Parameter(
+                 *         name="include[]",
+                 *         in="query",
+                 *         description="List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                 *         default="",
+                 *         required=false,
+                 *         type="array",
+                 *         @SWG\Items(
+                 *             type="string"
+                 *         ),
+                 *         collectionFormat="multi"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="page",
+                 *         in="query",
+                 *         description="Page number",
+                 *         required=false,
+                 *         default=1,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="limit",
+                 *         in="query",
+                 *         description="Items limit per page",
+                 *         required=false,
+                 *         default=10,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Requested resource collection"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->get('/', 'App\REST\Http\Controllers\Api\v1\CommentController@index')
+                    ->name('comments');
+
+                /**
+                 * @SWG\Get(
+                 *     path="/comments/show/{id}",
+                 *     tags={"comments"},
+                 *     description="Get specific comment by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *      @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="comment with specified id"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->get('/show/{id}', 'App\REST\Http\Controllers\Api\v1\CommentController@show')
+                    ->name('comments.show.id');
+
+                /**
+                 * @SWG\Post(
+                 *     path="/comments/create",
+                 *     tags={"comments"},
+                 *     description="Create comment",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="",
+                 *         in="body",
+                 *         description="",
+                 *         required=true,
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/comment",
+                 *         )
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Created entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->post('/create/', 'App\REST\Http\Controllers\Api\v1\CommentController@store')
+                    ->name('comments.create');
+
+                /**
+                 * @SWG\Patch(
+                 *     path="/comments/update/{id}",
+                 *     tags={"comments"},
+                 *     description="Update specific comment by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         description="",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="",
+                 *         in="body",
+                 *         description="",
+                 *         required=true,
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/comment"
+                 *         )
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Updated entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->patch('/update/{id}', 'App\REST\Http\Controllers\Api\v1\CommentController@update')
+                    ->name('comments.update');
+
+                /**
+                 * @SWG\Delete(
+                 *     path="/comments/delete/{id}",
+                 *     tags={"comments"},
+                 *     description="Delete specific comment by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         description="",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="204",
+                 *         description="Deleted entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->delete('/delete/{id}', 'App\REST\Http\Controllers\Api\v1\CommentController@destroy')
+                    ->name('comments.delete');
+            }
+        );
+
         //groups CRUD
         $api->group(
             ['prefix' => '/groups'],
@@ -1360,6 +1629,544 @@ $api->group(
                  */
                 $api->delete('/delete/{id}', 'App\REST\Http\Controllers\Api\v1\GroupController@destroy')
                     ->name('groups.delete');
+            }
+        );
+
+        //pivots-comments-posts CRUD
+        $api->group(
+            ['prefix' => '/pivots-comments-posts'],
+            function ($api) {
+
+                /**
+                 * @SWG\Get(
+                 *     path="/pivots-comments-posts",
+                 *     tags={"pivots-comments-posts"},
+                 *     description="Get list of pivots-comments-posts",
+                 *     produces= {"application/json"},
+                 *
+                 *      @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *      @SWG\Parameter(
+                 *         name="include[]",
+                 *         in="query",
+                 *         description="List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                 *         default="",
+                 *         required=false,
+                 *         type="array",
+                 *         @SWG\Items(
+                 *             type="string"
+                 *         ),
+                 *         collectionFormat="multi"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="page",
+                 *         in="query",
+                 *         description="Page number",
+                 *         required=false,
+                 *         default=1,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="limit",
+                 *         in="query",
+                 *         description="Items limit per page",
+                 *         required=false,
+                 *         default=10,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Requested resource collection"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->get('/', 'App\REST\Http\Controllers\Api\v1\PivotCommentPostController@index')
+                    ->name('pivots-comments-posts');
+
+                /**
+                 * @SWG\Get(
+                 *     path="/pivots-comments-posts/show/{id}",
+                 *     tags={"pivots-comments-posts"},
+                 *     description="Get specific pivot-comment-post by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *      @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="pivot-comment-post with specified id"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->get('/show/{id}', 'App\REST\Http\Controllers\Api\v1\PivotCommentPostController@show')
+                    ->name('pivots-comments-posts.show.id');
+
+                /**
+                 * @SWG\Post(
+                 *     path="/pivots-comments-posts/create",
+                 *     tags={"pivots-comments-posts"},
+                 *     description="Create pivot-comment-post",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="",
+                 *         in="body",
+                 *         description="",
+                 *         required=true,
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/pivot-comment-post",
+                 *         )
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Created entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->post('/create/', 'App\REST\Http\Controllers\Api\v1\PivotCommentPostController@store')
+                    ->name('pivots-comments-posts.create');
+
+                /**
+                 * @SWG\Patch(
+                 *     path="/pivots-comments-posts/update/{id}",
+                 *     tags={"pivots-comments-posts"},
+                 *     description="Update specific pivot-comment-post by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         description="",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="",
+                 *         in="body",
+                 *         description="",
+                 *         required=true,
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/pivot-comment-post"
+                 *         )
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Updated entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->patch('/update/{id}', 'App\REST\Http\Controllers\Api\v1\PivotCommentPostController@update')
+                    ->name('pivots-comments-posts.update');
+
+                /**
+                 * @SWG\Delete(
+                 *     path="/pivots-comments-posts/delete/{id}",
+                 *     tags={"pivots-comments-posts"},
+                 *     description="Delete specific pivot-comment-post by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         description="",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="204",
+                 *         description="Deleted entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->delete('/delete/{id}', 'App\REST\Http\Controllers\Api\v1\PivotCommentPostController@destroy')
+                    ->name('pivots-comments-posts.delete');
+            }
+        );
+
+        //pivots-posts-images CRUD
+        $api->group(
+            ['prefix' => '/pivots-posts-images'],
+            function ($api) {
+
+                /**
+                 * @SWG\Get(
+                 *     path="/pivots-posts-images",
+                 *     tags={"pivots-posts-images"},
+                 *     description="Get list of pivots-posts-images",
+                 *     produces= {"application/json"},
+                 *
+                 *      @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *      @SWG\Parameter(
+                 *         name="include[]",
+                 *         in="query",
+                 *         description="List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                 *         default="",
+                 *         required=false,
+                 *         type="array",
+                 *         @SWG\Items(
+                 *             type="string"
+                 *         ),
+                 *         collectionFormat="multi"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="page",
+                 *         in="query",
+                 *         description="Page number",
+                 *         required=false,
+                 *         default=1,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="limit",
+                 *         in="query",
+                 *         description="Items limit per page",
+                 *         required=false,
+                 *         default=10,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Requested resource collection"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->get('/', 'App\REST\Http\Controllers\Api\v1\PivotPostImageController@index')
+                    ->name('pivots-posts-images');
+
+                /**
+                 * @SWG\Get(
+                 *     path="/pivots-posts-images/show/{id}",
+                 *     tags={"pivots-posts-images"},
+                 *     description="Get specific pivot-post-image by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *      @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="pivot-post-image with specified id"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->get('/show/{id}', 'App\REST\Http\Controllers\Api\v1\PivotPostImageController@show')
+                    ->name('pivots-posts-images.show.id');
+
+                /**
+                 * @SWG\Post(
+                 *     path="/pivots-posts-images/create",
+                 *     tags={"pivots-posts-images"},
+                 *     description="Create pivot-post-image",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="",
+                 *         in="body",
+                 *         description="",
+                 *         required=true,
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/pivot-post-image",
+                 *         )
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Created entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->post('/create/', 'App\REST\Http\Controllers\Api\v1\PivotPostImageController@store')
+                    ->name('pivots-posts-images.create');
+
+                /**
+                 * @SWG\Patch(
+                 *     path="/pivots-posts-images/update/{id}",
+                 *     tags={"pivots-posts-images"},
+                 *     description="Update specific pivot-post-image by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         description="",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="",
+                 *         in="body",
+                 *         description="",
+                 *         required=true,
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/pivot-post-image"
+                 *         )
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="200",
+                 *         description="Updated entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->patch('/update/{id}', 'App\REST\Http\Controllers\Api\v1\PivotPostImageController@update')
+                    ->name('pivots-posts-images.update');
+
+                /**
+                 * @SWG\Delete(
+                 *     path="/pivots-posts-images/delete/{id}",
+                 *     tags={"pivots-posts-images"},
+                 *     description="Delete specific pivot-post-image by Id",
+                 *     produces= {"application/json"},
+                 *
+                 *     @SWG\Parameter(
+                 *         name="Authorization",
+                 *         in="header",
+                 *         description="JWTAuthToken example - Bearer {token}",
+                 *         required=true,
+                 *         type="string"
+                 *     ),
+                 *     @SWG\Parameter(
+                 *         name="id",
+                 *         in="path",
+                 *         description="",
+                 *         required=true,
+                 *         type="integer"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="204",
+                 *         description="Deleted entity"
+                 *     ),
+                 *
+                 *     @SWG\Response(
+                 *         response="403",
+                 *         description="Access forbidden"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="422",
+                 *         description="Unprocessable entity"
+                 *     ),
+                 *     @SWG\Response(
+                 *         response="default",
+                 *         description="Unexpected error",
+                 *         @SWG\Schema(
+                 *             ref="#/definitions/error"
+                 *         )
+                 *     )
+                 * )
+                 */
+                $api->delete('/delete/{id}', 'App\REST\Http\Controllers\Api\v1\PivotPostImageController@destroy')
+                    ->name('pivots-posts-images.delete');
             }
         );
 

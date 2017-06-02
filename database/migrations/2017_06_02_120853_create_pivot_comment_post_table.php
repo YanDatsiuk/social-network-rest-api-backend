@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateUsersTable extends Migration {
+class CreatePivotCommentPostTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,11 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function(Blueprint $table)
+		Schema::create('pivot_comment_post', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->string('email')->unique();
-			$table->string('password');
-			$table->string('remember_token', 100)->nullable();
-			$table->timestamps();
+			$table->integer('comment_id')->unsigned()->nullable()->index('index2');
+			$table->integer('post_id')->unsigned()->nullable()->index('index3');
 		});
 	}
 
@@ -31,7 +28,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('pivot_comment_post');
 	}
 
 }
