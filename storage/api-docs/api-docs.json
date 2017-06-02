@@ -1,0 +1,2905 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "REST API",
+        "description": "",
+        "termsOfService": "Laravel, Swagger",
+        "contact": {
+            "email": ""
+        },
+        "version": "1.0.0"
+    },
+    "host": "social-network.dev",
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/auths-actions-groups": {
+            "get": {
+                "tags": [
+                    "auths-actions-groups"
+                ],
+                "description": "Get list of auths-actions-groups",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions-groups/show/{id}": {
+            "get": {
+                "tags": [
+                    "auths-actions-groups"
+                ],
+                "description": "Get specific auth-action-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "auth-action-group with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions-groups/create": {
+            "post": {
+                "tags": [
+                    "auths-actions-groups"
+                ],
+                "description": "Create auth-action-group",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-action-group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions-groups/update/{id}": {
+            "patch": {
+                "tags": [
+                    "auths-actions-groups"
+                ],
+                "description": "Update specific auth-action-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-action-group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions-groups/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "auths-actions-groups"
+                ],
+                "description": "Delete specific auth-action-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions": {
+            "get": {
+                "tags": [
+                    "auths-actions"
+                ],
+                "description": "Get list of auths-actions",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions/show/{id}": {
+            "get": {
+                "tags": [
+                    "auths-actions"
+                ],
+                "description": "Get specific auth-action by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "auth-action with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions/create": {
+            "post": {
+                "tags": [
+                    "auths-actions"
+                ],
+                "description": "Create auth-action",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-action"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions/update/{id}": {
+            "patch": {
+                "tags": [
+                    "auths-actions"
+                ],
+                "description": "Update specific auth-action by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-action"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-actions/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "auths-actions"
+                ],
+                "description": "Delete specific auth-action by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups-users": {
+            "get": {
+                "tags": [
+                    "auths-groups-users"
+                ],
+                "description": "Get list of auths-groups-users",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups-users/show/{id}": {
+            "get": {
+                "tags": [
+                    "auths-groups-users"
+                ],
+                "description": "Get specific auth-group-user by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "auth-group-user with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups-users/create": {
+            "post": {
+                "tags": [
+                    "auths-groups-users"
+                ],
+                "description": "Create auth-group-user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-group-user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups-users/update/{id}": {
+            "patch": {
+                "tags": [
+                    "auths-groups-users"
+                ],
+                "description": "Update specific auth-group-user by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-group-user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups-users/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "auths-groups-users"
+                ],
+                "description": "Delete specific auth-group-user by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups": {
+            "get": {
+                "tags": [
+                    "auths-groups"
+                ],
+                "description": "Get list of auths-groups",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups/show/{id}": {
+            "get": {
+                "tags": [
+                    "auths-groups"
+                ],
+                "description": "Get specific auth-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "auth-group with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups/create": {
+            "post": {
+                "tags": [
+                    "auths-groups"
+                ],
+                "description": "Create auth-group",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups/update/{id}": {
+            "patch": {
+                "tags": [
+                    "auths-groups"
+                ],
+                "description": "Update specific auth-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth-group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/auths-groups/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "auths-groups"
+                ],
+                "description": "Delete specific auth-group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/groups": {
+            "get": {
+                "tags": [
+                    "groups"
+                ],
+                "description": "Get list of groups",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/groups/show/{id}": {
+            "get": {
+                "tags": [
+                    "groups"
+                ],
+                "description": "Get specific group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "group with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/groups/create": {
+            "post": {
+                "tags": [
+                    "groups"
+                ],
+                "description": "Create group",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/groups/update/{id}": {
+            "patch": {
+                "tags": [
+                    "groups"
+                ],
+                "description": "Update specific group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/group"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/groups/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "groups"
+                ],
+                "description": "Delete specific group by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-walls": {
+            "get": {
+                "tags": [
+                    "pivots-posts-walls"
+                ],
+                "description": "Get list of pivots-posts-walls",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-walls/show/{id}": {
+            "get": {
+                "tags": [
+                    "pivots-posts-walls"
+                ],
+                "description": "Get specific pivot-post-wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "pivot-post-wall with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-walls/create": {
+            "post": {
+                "tags": [
+                    "pivots-posts-walls"
+                ],
+                "description": "Create pivot-post-wall",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-post-wall"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-walls/update/{id}": {
+            "patch": {
+                "tags": [
+                    "pivots-posts-walls"
+                ],
+                "description": "Update specific pivot-post-wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pivot-post-wall"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/pivots-posts-walls/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "pivots-posts-walls"
+                ],
+                "description": "Delete specific pivot-post-wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "tags": [
+                    "posts"
+                ],
+                "description": "Get list of posts",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/show/{id}": {
+            "get": {
+                "tags": [
+                    "posts"
+                ],
+                "description": "Get specific post by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "post with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/create": {
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "description": "Create post",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/update/{id}": {
+            "patch": {
+                "tags": [
+                    "posts"
+                ],
+                "description": "Update specific post by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/post"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "posts"
+                ],
+                "description": "Delete specific post by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "description": "Get list of users",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/show/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "description": "Get specific user by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/create": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "description": "Create user",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/update/{id}": {
+            "patch": {
+                "tags": [
+                    "users"
+                ],
+                "description": "Update specific user by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "description": "Delete specific user by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/walls": {
+            "get": {
+                "tags": [
+                    "walls"
+                ],
+                "description": "Get list of walls",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/walls/show/{id}": {
+            "get": {
+                "tags": [
+                    "walls"
+                ],
+                "description": "Get specific wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "wall with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/walls/create": {
+            "post": {
+                "tags": [
+                    "walls"
+                ],
+                "description": "Create wall",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/wall"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/walls/update/{id}": {
+            "patch": {
+                "tags": [
+                    "walls"
+                ],
+                "description": "Update specific wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/wall"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/walls/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "walls"
+                ],
+                "description": "Delete specific wall by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "description": "Login Request",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "loginParam`s",
+                        "in": "body",
+                        "description": "Email,Password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Set authorization token type(JWT) in header and return AuthUser"
+                    },
+                    "403": {
+                        "description": "Access Forbidden"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "description": "Logout",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-app-authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "NoContent"
+                    },
+                    "500": {
+                        "description": "Token has been blacklisted"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "description": "Register request",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/register"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Set authorization token type(JWT) in header and return AuthUser"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/password/email": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "description": "Request a password reset link into email",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/reset-link-request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/password/reset": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "description": "Reset password using token from email",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/reset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/images": {
+            "get": {
+                "tags": [
+                    "images"
+                ],
+                "description": "Get list of images",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "include[]",
+                        "in": "query",
+                        "description": "List of model relations with limit and offset parameter. Example: {relationName}:limit({limit}|{offset})",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "default": ""
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items limit per page",
+                        "required": false,
+                        "type": "integer",
+                        "default": 10
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested resource collection"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/images/show/{id}": {
+            "get": {
+                "tags": [
+                    "images"
+                ],
+                "description": "Get specific image by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "image with specified id"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/images/upload": {
+            "post": {
+                "tags": [
+                    "images"
+                ],
+                "description": "Upload image",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-app-authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "description": "file",
+                        "required": true,
+                        "type": "file",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created resource"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "default": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/images/update/{id}": {
+            "patch": {
+                "tags": [
+                    "images"
+                ],
+                "description": "Update specific image by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/image"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        },
+        "/images/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "images"
+                ],
+                "description": "Delete specific image by Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWTAuthToken example - Bearer {token}",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted entity"
+                    },
+                    "403": {
+                        "description": "Access forbidden"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "auth-action-group": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "action_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "group_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "auth-action": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "type": "string",
+                    "format": "default"
+                }
+            }
+        },
+        "auth-group-user": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "group_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "auth-group": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "type": "string",
+                    "format": "default"
+                }
+            }
+        },
+        "group": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "wall_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "title": {
+                    "type": "string",
+                    "format": "default"
+                },
+                "description": {
+                    "type": "string",
+                    "format": "default"
+                }
+            }
+        },
+        "image": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "image_src": {
+                    "type": "string",
+                    "format": "default"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "pivot-post-wall": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "post_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "wall_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "post": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "author_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "text": {
+                    "type": "string",
+                    "format": "default"
+                }
+            }
+        },
+        "register": {
+            "required": [
+                "name",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "default": "John Doe"
+                },
+                "email": {
+                    "type": "string",
+                    "default": "john.snow@mail.com"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "reset-link-request": {
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "reset": {
+            "required": [
+                "token",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "user": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "type": "string",
+                    "format": "default"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "default"
+                },
+                "password": {
+                    "type": "string",
+                    "format": "default"
+                },
+                "remember_token": {
+                    "type": "string",
+                    "format": "default"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "wall": {
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}

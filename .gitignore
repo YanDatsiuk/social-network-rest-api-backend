@@ -1,0 +1,16 @@
+/.idea
+/.vagrant
+/_ide_helper.php
+/_ide_helper_models.php
+/.phpstorm.meta.php
+Vagrantfile
+Homestead.json
+Homestead.yaml
+
+#Laravel ignore
+/node_modules
+/public/storage
+/vendor
+Homestead.json
+Homestead.yaml
+.env
